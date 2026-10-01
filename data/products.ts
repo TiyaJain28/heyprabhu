@@ -91,12 +91,11 @@ export const products: Product[] = [
     name: "Desi Ghee Terracotta Diya – Lavender",
     description:
       "A beautiful Terracotta Diya with Lavender fragrance, perfect for your pooja moments or creating a calm and peaceful vibe at home.",
-    price: null,
+    price: "₹210",
     group: "Desi Ghee Products",
     image: "/products/6.png",
     details: [
       { label: "Fragrance", value: "Lavender" },
-      { label: "Price", value: "" },
       { label: "Material", value: "Terracotta clay, Desi Ghee, cotton wick and fragrance" },
       { label: "Burning Time", value: "Approx. 1–2 hours" },
       { label: "Usage", value: "Pooja, festivals, gifting and home ambience" },
