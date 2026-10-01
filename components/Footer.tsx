@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AtSign, Globe, Mail, MessageCircle, Share2, ArrowUp } from "lucide-react";
+import { AtSign, MessageCircle, Share2, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -142,12 +142,6 @@ export default function Footer() {
             </p>
             <p className="font-semibold text-stone-800">
               Timing: Mon to Sat: 11 AM - 7 PM.
-            </p>
-            <p className="font-medium text-stone-800">
-              Email: <span className="opacity-70"></span>
-            </p>
-            <p className="font-medium text-stone-800">
-              Website: <span className="opacity-70"></span>
             </p>
           </div>
 
