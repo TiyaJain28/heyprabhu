@@ -58,6 +58,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         {/* Product Illustration */}
         <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
           <ProductIllustration
+            id={product.id}
             name={product.name}
             group={product.group}
             className="w-32 h-32 sm:w-36 sm:h-36 drop-shadow-md"
