@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────── */
+:root {
+  --sun-yellow:       #FFDC00;
+  --sun-yellow-hover: #F0CE00;
+  --sun-yellow-soft:  #FFF9D6;
+  --fun-pink:         #D81B60;
+  --fun-pink-hover:   #C2185B;
+  --fun-pink-soft:    #FCE4EC;
+  --maroon:           #7A2E0E;
+  --saffron:          #F59E0B;
+  --marigold:         #FBBF24;
+  --cream:            #FFFDF8;
+  --sand:             #FDF6E2;
+  --charcoal:         #1F1A17;
+  --wa-green:         #25D366;
+}
+
+/* ─── Base ──────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Custom Scrollbar ──────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 99px; }
+
+/* ─── Focus styles ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Marquee ───────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .spark-particle { display: none; }
+}
+
+/* ─── Flame flicker ─────────────────────────────── */
+@keyframes flicker {
+  0%,100% { opacity: 1; transform: scaleX(1) scaleY(1) rotate(-1deg); }
+  25%      { opacity: 0.9; transform: scaleX(0.95) scaleY(1.05) rotate(1deg); }
+  50%      { opacity: 1; transform: scaleX(1.05) scaleY(0.97) rotate(-0.5deg); }
+  75%      { opacity: 0.95; transform: scaleX(0.97) scaleY(1.03) rotate(0.8deg); }
+}
+
+@keyframes glow-pulse {
+  0%,100% { opacity: 0.35; r: 54; }
+  50%      { opacity: 0.55; r: 62; }
+}
+
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(0) scale(1); }
+  20%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-90px) scale(0.4); }
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
+
+.flame-shape {
+  transform-origin: 50% 90%;
+  animation: flicker 2.5s ease-in-out infinite;
+}
+
+.glow-circle {
+  transform-origin: center;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.spark-particle {
+  animation: float-up 3s ease-out infinite;
+}
+
+.wa-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--wa-green);
+  animation: wa-pulse 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flame-shape, .glow-circle, .spark-particle, .wa-ring {
+    animation: none;
+  }
+}
+
+/* ─── Animated underline for nav ────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--saffron);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+.nav-link.active { color: var(--maroon); font-weight: 600; }
