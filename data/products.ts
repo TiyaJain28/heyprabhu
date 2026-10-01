@@ -9,6 +9,7 @@ export interface Product {
   description: string;
   price: string | null;
   group: string;
+  image?: string;
   details: ProductDetail[];
 }
 
@@ -21,6 +22,7 @@ export const products: Product[] = [
       "A beautiful gifting option featuring Desi Ghee T-Lights in elegant Gold Cups. Perfect for pooja, festivals and gifting your loved ones.",
     price: "₹85",
     group: "Desi Ghee Products",
+    image: "/products/1.png",
     details: [
       { label: "Pack Size", value: "25 pcs" },
       { label: "Fragrance", value: "Unscented" },
@@ -36,6 +38,7 @@ export const products: Product[] = [
       "A 25-piece pack of Desi Ghee T-Lights in Gold Cups, perfect for regular pooja, festive celebrations and special occasions.",
     price: "₹335",
     group: "Desi Ghee Products",
+    image: "/products/2.png",
     details: [
       { label: "Pack Size", value: "25 pcs" },
       { label: "Burning Time", value: "20 minutes" },
@@ -49,6 +52,7 @@ export const products: Product[] = [
       "A larger 50-piece pack, perfect if you need T-Lights for bigger pooja setups, festivals or regular use.",
     price: "₹650",
     group: "Desi Ghee Products",
+    image: "/products/3.png",
     details: [
       { label: "Pack Size", value: "50 pcs" },
       { label: "Burning Time", value: "20 minutes" },
@@ -62,6 +66,7 @@ export const products: Product[] = [
       "Want to try them first? The Sample Pack is a great option to experience our Desi Ghee T-Lights before going for a larger pack.",
     price: "₹14",
     group: "Desi Ghee Products",
+    image: "/products/4.png",
     details: [
       { label: "Pack Size", value: "1 no" },
     ],
@@ -73,6 +78,7 @@ export const products: Product[] = [
       "A traditional Terracotta Diya with Mogra fragrance — perfect for adding that warm, festive and devotional feel to your space.",
     price: "₹210",
     group: "Desi Ghee Products",
+    image: "/products/5.png",
     details: [
       { label: "Fragrance", value: "Mogra" },
       { label: "Material", value: "Terracotta clay, Desi Ghee, cotton wick and fragrance" },
@@ -87,6 +93,7 @@ export const products: Product[] = [
       "A beautiful Terracotta Diya with Lavender fragrance, perfect for your pooja moments or creating a calm and peaceful vibe at home.",
     price: null,
     group: "Desi Ghee Products",
+    image: "/products/6.png",
     details: [
       { label: "Fragrance", value: "Lavender" },
       { label: "Price", value: "" },
@@ -103,6 +110,7 @@ export const products: Product[] = [
       "A 50g incense stick pack made for those peaceful moments of pooja, prayer and devotion.",
     price: "₹80",
     group: "Incense Sticks",
+    image: "/products/7.png",
     details: [
       { label: "Pack Size", value: "50g" },
       { label: "Fragrance", value: "Hey Special" },
@@ -115,6 +123,7 @@ export const products: Product[] = [
       "Lavender fragrance wali incense sticks, perfect for creating a calm and soothing atmosphere at home.",
     price: "₹80",
     group: "Incense Sticks",
+    image: "/products/8.png",
     details: [
       { label: "Pack Size", value: "50g" },
       { label: "Fragrance", value: "Lavender" },
@@ -127,6 +136,7 @@ export const products: Product[] = [
       "Rose fragrance wali incense sticks with a soft floral aroma, perfect for pooja, prayer and everyday home fragrance.",
     price: "₹80",
     group: "Incense Sticks",
+    image: "/products/9.png",
     details: [
       { label: "Pack Size", value: "50g" },
       { label: "Fragrance", value: "Rose" },

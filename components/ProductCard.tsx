@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Product } from "@/data/products";
 import { ProductIllustration } from "./Illustrations";
@@ -11,6 +12,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
+  const [currentSrc, setCurrentSrc] = useState<string | undefined>(product.image);
+  const [imageFailed, setImageFailed] = useState(false);
   const isIncense = product.group === "Incense Sticks";
 
   /* Filter details so "Price" label is never shown — price is shown in badge */
@@ -36,6 +39,20 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     `Hello Hey Prabhu! I would like to order: ${product.name} (${displayPrice})`
   )}`;
 
+  const handleImageError = () => {
+    if (currentSrc?.endsWith(".png")) {
+      // Try .jpg if .png failed
+      setCurrentSrc(currentSrc.replace(/\.png$/, ".jpg"));
+    } else if (currentSrc?.endsWith(".jpg")) {
+      // Try .png if .jpg failed
+      setCurrentSrc(currentSrc.replace(/\.jpg$/, ".png"));
+    } else {
+      setImageFailed(true);
+    }
+  };
+
+  const hasRealImage = Boolean(currentSrc && !imageFailed);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -45,8 +62,8 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       whileHover={{ y: -6, boxShadow: "0 16px 36px rgba(0,0,0,0.10)" }}
       className="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-stone-200/90 shadow-sm transition-all duration-300"
     >
-      {/* ── Visual / Illustration Container ── */}
-      <div className="relative aspect-square w-full flex items-center justify-center p-6 bg-gradient-to-b from-stone-50/80 to-amber-50/40 border-b border-stone-100 overflow-hidden">
+      {/* ── Visual / Image Container ── */}
+      <div className="relative aspect-square w-full flex items-center justify-center bg-stone-50/80 border-b border-stone-100 overflow-hidden">
         {/* Top-Right Badge (Yellow/Amber badge like STUTI screenshot 2) */}
         <span
           className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight shadow-sm text-stone-900"
@@ -55,15 +72,26 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           {badgeText}
         </span>
 
-        {/* Product Illustration */}
-        <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-          <ProductIllustration
-            id={product.id}
-            name={product.name}
-            group={product.group}
-            className="w-32 h-32 sm:w-36 sm:h-36 drop-shadow-md"
+        {/* Product Visual: Real image if available, else bespoke SVG illustration */}
+        {hasRealImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={currentSrc}
+            alt={product.name}
+            className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            onError={handleImageError}
+            loading="lazy"
           />
-        </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center p-6 bg-gradient-to-b from-stone-50/80 to-amber-50/40 transition-transform duration-300 group-hover:scale-105">
+            <ProductIllustration
+              id={product.id}
+              name={product.name}
+              group={product.group}
+              className="w-32 h-32 sm:w-36 sm:h-36 drop-shadow-md"
+            />
+          </div>
+        )}
 
         {/* Floating Quick Action Button on Bottom-Right (matches STUTI '+' circular button) */}
         <a
